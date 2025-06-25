@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mine Sweeper</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="media/nuclear-explosion.svg" type="image/x-icon">
+  </head>
+  <body>
+    <main>
+        <h1>Mine Sweeper</h1>  
+    </main>
+    <div>
+        <button id="4" onclick="getLevel(this)">4 x 4</button>
+        <button id="8" onclick="getLevel(this)">8 x 8</button>
+        <button id="12" onclick="getLevel(this)">12 x 12</button>
+    </div>
+    <div>
+        <table class="game-table">
+            <tbody class="board">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="victory hide">
+        <h2>You successfully targeted all the nuclear sites!</h2>
+        <button onclick="onInit()">Restart</button>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>

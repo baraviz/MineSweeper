@@ -1,0 +1,19 @@
+.hide {
+    display: none;    
+}
+
+table, th, td {
+    border: 1px solid;
+    text-align: center;
+}
+
+th, td {
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+}
+
+
+.cell:hover {
+    cursor: pointer;
+}
