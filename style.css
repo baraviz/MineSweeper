@@ -1,19 +1,50 @@
 .hide {
-    display: none;    
+    display: none;
 }
 
-table, th, td {
+table,
+th,
+td {
     border: 1px solid;
     text-align: center;
-}
-
-th, td {
-    width: 20px;
-    height: 20px;
-    margin: 10px;
 }
 
 
 .cell:hover {
     cursor: pointer;
+}
+
+td.cell {
+    width: 30px;
+    height: 30px;
+    position: relative;
+    font-size: 20px;
+}
+
+
+.cell-content {
+    display: block;
+    line-height: 20px;
+}
+
+.cell-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 10;
+}
+
+.flag-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: 20;
 }

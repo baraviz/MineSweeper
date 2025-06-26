@@ -1,0 +1,132 @@
+// CELLS TYPE:
+
+// CORNERS (3 NEGS)
+const TOP_LEFT = 'TOP_LEFT'
+const TOP_RIGHT = 'TOP_RIGHT'
+const BOTTOM_LEFT = 'BOTTOM_LEFT'
+const BOTTOM_RIGHT = 'BOTTOM_RIGHT'
+
+// SIDES
+const TOP = 'TOP'
+const BOTTOM = 'BOTTOM'
+const RIGHT = 'RIGHT'
+const LEFT = 'LEFT'
+
+// CENTRIC
+const CENTER = 'CENTER'
+
+
+function cellType(board, i, j) {
+    if (i === 0) {
+        board[i][j].type = TOP
+    }
+    if (j === 0) {
+        board[i][j].type = LEFT
+    }
+    if (i === gLevel.SIZE - 1) {
+        board[i][j].type = BOTTOM
+    }
+    if (j === gLevel.SIZE - 1) {
+        board[i][j].type = RIGHT
+    }
+}
+
+function isCellCornerType(board) {
+    board[0][0].type = TOP_LEFT
+    board[0][gLevel.SIZE - 1].type = TOP_RIGHT
+    board[gLevel.SIZE - 1][0].type = BOTTOM_LEFT
+    board[gLevel.SIZE - 1][gLevel.SIZE - 1].type = BOTTOM_RIGHT
+
+}
+
+
+function setMinesNegsCount(board) {
+    for (var i = 0; i < gLevel.SIZE; i++) {
+        for (var j = 0; j < gLevel.SIZE; j++) {
+            var currCell = board[i][j]
+            if (currCell.type === CENTER) {
+                gBoard[i + 1][j].minesAroundCount++
+                gBoard[i][j + 1].minesAroundCount++
+                gBoard[i - 1][j].minesAroundCount++
+                gBoard[i][j - 1].minesAroundCount++
+                gBoard[i + 1][j + 1].minesAroundCount++
+                gBoard[i - 1][j - 1].minesAroundCount++
+                gBoard[i - 1][j + 1].minesAroundCount++
+                gBoard[i + 1][j - 1].minesAroundCount++
+
+            } else if (currCell.type === TOP) {
+                gBoard[i + 1][j].minesAroundCount++
+                gBoard[i][j + 1].minesAroundCount++
+                gBoard[i][j - 1].minesAroundCount++
+                gBoard[i + 1][j + 1].minesAroundCount++
+                gBoard[i + 1][j - 1].minesAroundCount++
+
+            } else if (currCell.type === BOTTOM) {
+                gBoard[i][j + 1].minesAroundCount++
+                gBoard[i - 1][j].minesAroundCount++
+                gBoard[i][j - 1].minesAroundCount++
+                gBoard[i - 1][j - 1].minesAroundCount++
+                gBoard[i - 1][j + 1].minesAroundCount++
+
+            } else if (currCell.type === RIGHT) {
+                gBoard[i + 1][j].minesAroundCount++
+                gBoard[i - 1][j].minesAroundCount++
+                gBoard[i][j - 1].minesAroundCount++
+                gBoard[i - 1][j - 1].minesAroundCount++
+                gBoard[i + 1][j - 1].minesAroundCount++
+
+            } else if (currCell.type === LEFT) {
+                gBoard[i + 1][j].minesAroundCount++
+                gBoard[i][j + 1].minesAroundCount++
+                gBoard[i - 1][j].minesAroundCount++
+                gBoard[i + 1][j + 1].minesAroundCount++
+                gBoard[i - 1][j + 1].minesAroundCount++
+
+            } else if (currCell.type === TOP_LEFT) {
+                gBoard[i + 1][j].minesAroundCount++
+                gBoard[i][j + 1].minesAroundCount++
+                gBoard[i + 1][j + 1].minesAroundCount++
+
+            } else if (currCell.type === TOP_RIGHT) {
+                gBoard[i + 1][j].minesAroundCount++
+                gBoard[i][j - 1].minesAroundCount++
+                gBoard[i + 1][j - 1].minesAroundCount++
+
+            } else if (currCell.type === BOTTOM_RIGHT) {
+                gBoard[i - 1][j].minesAroundCount++
+                gBoard[i][j - 1].minesAroundCount++
+                gBoard[i - 1][j - 1].minesAroundCount++
+
+            } else if (currCell.type === BOTTOM_LEFT) {
+                gBoard[i][j + 1].minesAroundCount++
+                gBoard[i - 1][j].minesAroundCount++
+                gBoard[i - 1][j + 1].minesAroundCount++
+
+            }
+        }
+    }
+}
+
+
+
+function renderBoard(board) {
+    var strHTML = ''
+    for (var i = 0; i < gLevel.SIZE; i++) {
+        strHTML += `<tr>`
+        for (var j = 0; j < gLevel.SIZE; j++) {
+            var currCell = board[i][j]
+            if (currCell.isMine) {
+                strHTML += `<td data-i="${i}" data-j="${j}" class="cell mine" onclick="onCellClicked(this)" oncontextmenu="onCellRightClicked(event, this)">${MINE_IMG}${CELL_OVERLAY}</td>`
+            } else if (currCell.minesAroundCount > 0) {
+                strHTML += `<td data-i="${i}" data-j="${j}" class="cell count" onclick="onCellClicked(this)" oncontextmenu="onCellRightClicked(event, this)">${currCell.minesAroundCount}${CELL_OVERLAY}</td>`
+            } else {
+                strHTML += `<td data-i="${i}" data-j="${j}" class="cell empty" onclick="onCellClicked(this)" oncontextmenu="onCellRightClicked(event, this)">◻️${CELL_OVERLAY}</td>`
+
+            }
+        }
+        strHTML += `</tr>`
+    }
+    const elBoard = document.querySelector('.board')
+    elBoard.innerHTML = strHTML
+    console.table(gBoard)
+}

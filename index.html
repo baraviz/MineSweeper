@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" href="media/nuclear-explosion.svg" type="image/x-icon">
   </head>
-  <body>
-    <main>
+  <body onload="onInit()">
         <h1>Mine Sweeper</h1>  
-    </main>
+        <h2 class="timer">time: <span>0</span>s</h2>
+        <h2 class="flag-count">remain flags: <span>2</span></h2>
     <div>
-        <button id="4" onclick="getLevel(this)">4 x 4</button>
-        <button id="8" onclick="getLevel(this)">8 x 8</button>
-        <button id="12" onclick="getLevel(this)">12 x 12</button>
+        <button id="0" onclick="getLevel(this)">4 x 4</button>
+        <button id="1" onclick="getLevel(this)">8 x 8</button>
+        <button id="2" onclick="getLevel(this)">12 x 12</button>
     </div>
     <div>
         <table class="game-table">
@@ -26,6 +26,10 @@
 
     <div class="victory hide">
         <h2>You successfully targeted all the nuclear sites!</h2>
+        <button onclick="onInit()">Restart</button>
+    </div>
+    <div class="game-over hide">
+        <h2>You clicked on a mine, game over!</h2>
         <button onclick="onInit()">Restart</button>
     </div>
 
