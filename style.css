@@ -48,3 +48,7 @@ td.cell {
     pointer-events: none;
     z-index: 20;
 }
+
+.smiley {
+    font-size: 30px;
+}

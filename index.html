@@ -12,10 +12,13 @@
         <h1>Mine Sweeper</h1>  
         <h2 class="timer">time: <span>0</span>s</h2>
         <h2 class="flag-count">remain flags: <span>2</span></h2>
-    <div>
-        <button id="0" onclick="getLevel(this)">4 x 4</button>
-        <button id="1" onclick="getLevel(this)">8 x 8</button>
-        <button id="2" onclick="getLevel(this)">12 x 12</button>
+        <h2 class="lives hide">lives❤️: <span>2</span></h2></h2>
+
+        <div>
+        <button class="smiley" onclick="smiley(this)">😃</button> <br><br>
+        <button id="0" onclick="getLevel(this)">Beginner</button>
+        <button id="1" onclick="getLevel(this)">Medium</button>
+        <button id="2" onclick="getLevel(this)">Expert</button>
     </div>
     <div>
         <table class="game-table">
